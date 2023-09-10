@@ -3,7 +3,7 @@ These are the functions that get executed for each of the handlers called
 """
 
 import DisplayText
-import ApiFile
+import AvatarAPI
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import (
@@ -73,7 +73,7 @@ async def generateAvatar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     style = query.data
     await query.answer()
 
-    apiSuccess = ApiFile.generateAvatar(style)
+    apiSuccess = AvatarAPI.generateAvatar(style)
 
     if apiSuccess:
         await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo="./dest/generated_Avatar.png",

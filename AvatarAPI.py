@@ -18,11 +18,14 @@ def generateAvatar(avatarStyle):
     Took the CURL request from the API doc. Imported into Postman. Copied the generated python code from postman.
     """
 
+    original_photo_filepath = "Users/rishebabu/Desktop/TLSCode/TelegramBot/src/Original_Photo.png"
+    generated_avatar_filepath = "Users/rishebabu/Desktop/TLSCode/TelegramBot/dest/generated_Avatar.png"
+
     url = Credentials.MIRROR_API_URL + avatarStyle
 
     payload = {}
     files = [
-        ('photo', ('.png', open('./src/Original_Photo.png', 'rb'),
+        ('photo', ('Original_Photo.png', open(original_photo_filepath, 'rb'),
                    'image/png'))
     ]
 
@@ -40,6 +43,6 @@ def generateAvatar(avatarStyle):
         return 0
     else:
         generatedAvatar = requests.get(imageURL)
-        with open("./dest/generated_Avatar.png", "wb") as f:
+        with open(generated_avatar_filepath, "wb") as f:
             f.write(generatedAvatar.content)
         return 1
