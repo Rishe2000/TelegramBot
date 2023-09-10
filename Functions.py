@@ -1,5 +1,5 @@
 """
-These are the functions that get executed for each of the handlers called
+These are the functions that get executed for each of the handlers called.
 """
 
 import DisplayText

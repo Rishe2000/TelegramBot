@@ -1,5 +1,5 @@
 """
-This file contains the different handlers (Command Handlers, Conversation Handler, CallBackQuery Handlers...)
+This file contains the list of Command Handlers and CallBackQuery Handlers used for this bot.
 """
 
 import Functions
@@ -7,10 +7,7 @@ import Functions
 from telegram.ext import (
     CallbackQueryHandler,
     CommandHandler,
-    ConversationHandler,
 )
-
-
 
 PHOTO, STYLE, FINAL = range(3)
 
@@ -30,23 +27,17 @@ clicked_kenga_button = CallbackQueryHandler(callback=Functions.generateAvatar, p
 clicked_mau_button = CallbackQueryHandler(callback=Functions.generateAvatar, pattern="mau")
 clicked_anime_button = CallbackQueryHandler(callback=Functions.generateAvatar, pattern="anime")
 
-# Conversation Handler
-
-create_sticker_conversation_handler = ConversationHandler(
-
-    entry_points=[clicked_create_a_sticker_button, create_new_sticker_again_command_handler],
-    states={
-        PHOTO: [choose_avatar_style_command_handler, upload_photo_again_command_handler],
-        STYLE: [clicked_kenga_button, clicked_mau_button, clicked_anime_button],
-        FINAL: [create_new_sticker_again_command_handler, end_program_command_handler],
-    },
-    fallbacks=[cancel_command_handler],
-
-)
-
 HANDLER_LIST = [
     start_command_handler,
     begin_command_handler,
+    choose_avatar_style_command_handler,
+    upload_photo_again_command_handler,
+    create_new_sticker_again_command_handler,
+    end_program_command_handler,
+    cancel_command_handler,
+    clicked_create_a_sticker_button,
     clicked_list_command_button,
-    create_sticker_conversation_handler
+    clicked_kenga_button,
+    clicked_mau_button,
+    clicked_anime_button
 ]
